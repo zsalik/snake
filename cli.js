@@ -3,10 +3,10 @@ const Snake = require("./snake");
 const base = require("./base");
 Object.getOwnPropertyNames(base).map(p => (global[p] = base[p]));
 
-//Mutable state
+// Mutable state
 let State = Snake.initialState();
 
-//Matrix operations
+// Matrix operations
 const Matrix = {
   make: table => rep(rep(".")(table.cols))(table.rows),
   set: val => pos => adjust(pos.y)(adjust(pos.x)(k(val))),
@@ -23,7 +23,7 @@ const Matrix = {
     )(state)
 };
 
-//Key events
+// Key events
 readline.emitKeypressEvents(process.stdin);
 process.stdin.setRawMode(true);
 process.stdin.on("keypress", (str, key) => {
@@ -52,12 +52,12 @@ process.stdin.on("keypress", (str, key) => {
   }
 });
 
-//Game loop
+// Game loop
 const show = () =>
   console.log("\x1Bc" + Matrix.toString(Matrix.fromState(State)));
 const step = () => (State = Snake.next(State));
 
-//Main
+// Main
 setInterval(() => {
   step();
   show();

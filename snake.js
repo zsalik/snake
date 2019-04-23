@@ -14,7 +14,7 @@ const pointEq = p1 => p2 => p1.x == p2.x && p1.y == p2.y;
 const willEat = state => pointEq(nextHead(state))(state.apple);
 const willCrash = state => state.snake.find(pointEq(nextHead(state)));
 const validMove = move => state =>
-  state.moves(0).x + move.x != 0 || state.moves[0].y + move.y != 0;
+  state.moves[0].x + move.x != 0 || state.moves[0].y + move.y != 0;
 
 // Next values based on state
 const nextMoves = state =>
@@ -36,11 +36,11 @@ const nextSnake = state =>
 
 // Randomness
 const rndPos = table => ({
-  x: rndPos(0)(table.cols - 1),
-  y: rndPos(0)(table.rows - 1)
+  x: rnd(0)(table.cols - 1),
+  y: rnd(0)(table.rows - 1)
 });
 
-//Initial state
+// Initial state
 const initialState = () => ({
   cols: 20,
   rows: 14,
